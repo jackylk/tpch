@@ -2,3 +2,5 @@
 *.ob
 *.tbl
 .DS_Store
+dbgen
+qgen
