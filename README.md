@@ -1,8 +1,13 @@
 # TPC-H 2.17 for Mac OS X
 
-This version applies minor change to fix the issue `#include <malloc.h>` not found. To compile,
-latest version `gcc` is required. This is for personal convenience.
+run following script in cluster_script folder
 
-## Compile
+`./genenerate_data`
 
-* `make`
+`./create_load_table.sh`
+
+`./run_carbon_query.sh`
+
+`./run_parquet_query.sh`
+
+
