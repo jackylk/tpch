@@ -1,0 +1,70 @@
+Connecting to jdbc:hive2://carbon15:10000
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.5.1-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.6.0-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+18/10/29 16:21:37 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
+18/10/29 16:21:37 INFO Utils (Utils:397): Resolved authority: carbon15:10000
+18/10/29 16:21:38 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connected to: Spark SQL (version 2.3.2)
+Driver: Hive JDBC (version 1.2.1.spark2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://carbon15:10000> use tpchparquet;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.094 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> insert into table nation select * from tpchhive.nation;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.248 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table supplier select * from tpchhive.supplier;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.833 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table ORDERS select * from tpchhive.ORDERS;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (23.303 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table lineitem select * from tpchhive.lineitem;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (120.095 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table PARTSUPP select * from tpchhive.partsupp;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (7.353 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table REGION select * from tpchhive.region;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.189 seconds)
+0: jdbc:hive2://carbon15:10000> insert into TABLE PART select * from tpchhive.part;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (2.368 seconds)
+0: jdbc:hive2://carbon15:10000> insert into table CUSTOMER select * from tpchhive.customer;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (2.226 seconds)
+0: jdbc:hive2://carbon15:10000> 
+Closing: 0: jdbc:hive2://carbon15:10000

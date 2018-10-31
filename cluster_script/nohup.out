@@ -1,0 +1,1 @@
+nohup: bin/zookeeper-server-start.sh: No such file or directory

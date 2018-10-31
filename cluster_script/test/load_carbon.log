@@ -1,0 +1,136 @@
+Connecting to jdbc:hive2://carbon15:10000
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.5.1-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.6.0-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+18/10/29 15:45:36 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
+18/10/29 15:45:36 INFO Utils (Utils:397): Resolved authority: carbon15:10000
+18/10/29 15:45:36 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connected to: Spark SQL (version 2.3.2)
+Driver: Hive JDBC (version 1.2.1.spark2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://carbon15:10000> use tpchcarbon_base;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.111 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> set carbon.number.of.cores.while.loading=8;
++---------------------------------------+--------+--+
+|                  key                  | value  |
++---------------------------------------+--------+--+
+| carbon.number.of.cores.while.loading  | 8      |
++---------------------------------------+--------+--+
+1 row selected (0.014 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/part.tbl" into table PART options ('h eader'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (7.291 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/supplier.tbl" into table SUPPLIER opt ions ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.621 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/orders.tbl" into table ORDERS options  ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (30.556 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/nation.tbl" into table NATION options  ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.669 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/region.tbl" into table REGION options  ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.458 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/customer.tbl" into table CUSTOMER opt ions ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (4.174 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/partsupp.tbl" into table PARTSUPP opt ions ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (10.061 seconds)
+0: jdbc:hive2://carbon15:10000> load data inpath "/Users/jacky/code/tpch-osx/dbgen/tpch_data/lineitem.tbl" into table LINEITEM opt ions ('header'='false','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (335.762 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select count(*) from LINEITEM;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 59986052  |
++-----------+--+
+1 row selected (1.542 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from SUPPLIER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 100000    |
++-----------+--+
+1 row selected (1.765 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PARTSUPP;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 8000000   |
++-----------+--+
+1 row selected (0.255 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from CUSTOMER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 1500000   |
++-----------+--+
+1 row selected (0.165 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from NATION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 25        |
++-----------+--+
+1 row selected (1.143 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from REGION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 5         |
++-----------+--+
+1 row selected (0.159 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PART;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 2000000   |
++-----------+--+
+1 row selected (0.213 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from ORDERS;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 15000000  |
++-----------+--+
+1 row selected (0.172 seconds)
+0: jdbc:hive2://carbon15:10000> 
+Closing: 0: jdbc:hive2://carbon15:10000
