@@ -1,91 +1,86 @@
-Connecting to jdbc:hive2://carbon1:10000
-SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.1-bin-hadoop2.7/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.1-bin-hadoop2.7/jars/apache-carbondata-1.5.0-SNAPSHOT-bin-spark2.3.1-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
-SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
-2018-09-27 21:49:15 INFO  Utils:310 - Supplied authorities: carbon1:10000
-2018-09-27 21:49:15 INFO  Utils:397 - Resolved authority: carbon1:10000
-2018-09-27 21:49:15 INFO  HiveConnection:203 - Will try to open client transport with JDBC Uri: jdbc:hive2://carbon1:10000
-Connected to: Spark SQL (version 2.1.0)
+Connecting to jdbc:hive2://carbon15:10000
+18/11/18 18:12:46 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
+18/11/18 18:12:46 INFO Utils (Utils:397): Resolved authority: carbon15:10000
+18/11/18 18:12:46 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connected to: Spark SQL (version 2.2.1)
 Driver: Hive JDBC (version 1.2.1.spark2)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
-0: jdbc:hive2://carbon1:10000> use tpchcarbon_base;
+0: jdbc:hive2://carbon15:10000> use tpchcarbon_base;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
 No rows selected (0.104 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select count(*) from LINEITEM;
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select count(*) from LINEITEM;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 59986052  |
 +-----------+--+
-1 row selected (0.134 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from SUPPLIER;
+1 row selected (0.1 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from SUPPLIER;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 100000    |
 +-----------+--+
-1 row selected (0.124 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from PARTSUPP;
+1 row selected (0.087 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PARTSUPP;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 8000000   |
 +-----------+--+
-1 row selected (0.11 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from CUSTOMER;
+1 row selected (0.078 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from CUSTOMER;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 1500000   |
 +-----------+--+
-1 row selected (0.12 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from NATION;
+1 row selected (0.106 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from NATION;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 25        |
 +-----------+--+
-1 row selected (0.115 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from REGION;
+1 row selected (0.096 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from REGION;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 5         |
 +-----------+--+
-1 row selected (0.119 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from PART;
+1 row selected (0.094 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PART;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 2000000   |
 +-----------+--+
-1 row selected (0.148 seconds)
-0: jdbc:hive2://carbon1:10000> select count(*) from ORDERS;
+1 row selected (0.094 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from ORDERS;
 +-----------+--+
 | count(1)  |
 +-----------+--+
 | 15000000  |
 +-----------+--+
-1 row selected (0.155 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_pri ce, sum(l_extendedprice*(1-l_discount)) as sum_disc_price, sum(l_extendedprice*(1-l_discount)*(1+l_tax)) as sum_charge, avg(l_quan tity) as avg_qty, avg(l_extendedprice) as avg_price, avg(l_discount) as avg_disc, count(*) as count_order from lineitem where l_sh ipdate <= date('1998-09-02') group by l_returnflag, l_linestatus order by l_returnflag, l_linestatus;
-+---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+---------------------+-----------------------+--------------+--+
-| l_returnflag  | l_linestatus  |    sum_qty    |     sum_base_price     |     sum_disc_price     |       sum_charge       |       avg_qty       |      avg_price      |       avg_disc        | count_order  |
-+---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+---------------------+-----------------------+--------------+--+
-| A             | F             | 3.77518399E8  | 5.66065727797258E11    | 5.377591042780719E11   | 5.592766708921182E11   | 25.500975103007097  | 38237.15100895909   | 0.05000657454025636   | 14804077     |
-| N             | F             | 9851614.0     | 1.4767438399170006E10  | 1.4028805792211384E10  | 1.4590490998366611E10  | 25.522448302840946  | 38257.81066008116   | 0.04997336773770305   | 385998       |
-| N             | O             | 7.43124873E8  | 1.1143022869018943E12  | 1.0585809221450226E12  | 1.1009370001706064E12  | 25.498075870689316  | 38233.9029234823    | 0.050000811820697925  | 29144351     |
-| R             | F             | 3.7773283E8   | 5.664310549759989E11   | 5.38110922664767E11    | 5.596347808850814E11   | 25.50838478968014   | 38251.219273559684  | 0.04999679231410052   | 14808183     |
-+---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+---------------------+-----------------------+--------------+--+
-4 rows selected (7.158 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment from part, suppl ier, partsupp, nation, region where p_partkey = ps_partkey and s_suppkey = ps_suppkey and p_size = 15 and p_type like '%BRASS' and  s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE' and ps_supplycost = ( select min(ps_supplycost) fro m partsupp, supplier,nation, region where p_partkey = ps_partkey and s_suppkey = ps_suppkey and s_nationkey = n_nationkey and n_re gionkey = r_regionkey and r_name = 'EUROPE' ) order by s_acctbal desc, n_name, s_name, p_partkey limit 100;
+1 row selected (0.076 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_ex tendedprice*(1-l_discount)) as sum_disc_price, sum(l_extendedprice*(1-l_discount)*(1+l_tax)) as sum_charge, avg(l_quantity) as avg_qty, avg(l_e xtendedprice) as avg_price, avg(l_discount) as avg_disc, count(*) as count_order from lineitem where l_shipdate <= date('1998-09-02') group by  l_returnflag, l_linestatus order by l_returnflag, l_linestatus;
++---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+--------------------+-----------------------+--------------+--+
+| l_returnflag  | l_linestatus  |    sum_qty    |     sum_base_price     |     sum_disc_price     |       sum_charge       |       avg_qty       |     avg_price      |       avg_disc        | count_order  |
++---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+--------------------+-----------------------+--------------+--+
+| A             | F             | 3.77518399E8  | 5.660657277972627E11   | 5.3775910427807245E11  | 5.592766708921079E11   | 25.500975103007097  | 38237.1510089594   | 0.050006574540255436  | 14804077     |
+| N             | F             | 9851614.0     | 1.4767438399170313E10  | 1.402880579221161E10   | 1.4590490998367073E10  | 25.522448302840946  | 38257.81066008195  | 0.04997336773771352   | 385998       |
+| N             | O             | 7.43124873E8  | 1.1143022869018958E12  | 1.0585809221449678E12  | 1.1009370001705957E12  | 25.498075870689316  | 38233.90292348235  | 0.0500008118206848    | 29144351     |
+| R             | F             | 3.7773283E8   | 5.664310549760043E11   | 5.3811092266476587E11  | 5.596347808850762E11   | 25.50838478968014   | 38251.21927356005  | 0.04999679231410023   | 14808183     |
++---------------+---------------+---------------+------------------------+------------------------+------------------------+---------------------+--------------------+-----------------------+--------------+--+
+4 rows selected (9.671 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select s_acctbal, s_name, n_name, p_partkey, p_mfgr, s_address, s_phone, s_comment from part, supplier, partsup p, nation, region where p_partkey = ps_partkey and s_suppkey = ps_suppkey and p_size = 15 and p_type like '%BRASS' and s_nationkey = n_nationke y and n_regionkey = r_regionkey and r_name = 'EUROPE' and ps_supplycost = ( select min(ps_supplycost) from partsupp, supplier,nation, region wh ere p_partkey = ps_partkey and s_suppkey = ps_suppkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE' ) order  by s_acctbal desc, n_name, s_name, p_partkey limit 100;
 +------------+---------------------+-----------------+------------+-----------------+-------------------------------------------+------------------+-------------------------------------------------------------------------------------------------------+--+
 | s_acctbal  |       s_name        |     n_name      | p_partkey  |     p_mfgr      |                 s_address                 |     s_phone      |                                               s_comment                                               |
 +------------+---------------------+-----------------+------------+-----------------+-------------------------------------------+------------------+-------------------------------------------------------------------------------------------------------+--+
@@ -190,9 +185,9 @@ No rows selected (0.104 seconds)
 | 9767.32    | Supplier#000073781  | FRANCE          | 1823744    | Manufacturer#4  | LWLjymYpnPf1VxJkBpbausoKS2RpXWVZWBOD      | 16-282-344-5601  | nstructions haggle after the express, express courts. fluffily ironic foxes according t               |
 | 9766.22    | Supplier#000066352  | GERMANY         | 1516321    | Manufacturer#3  | ZcFNrwzNDkzf7PzdO0                        | 17-427-880-3444  | e of the regular foxes. ironic d                                                                      |
 +------------+---------------------+-----------------+------------+-----------------+-------------------------------------------+------------------+-------------------------------------------------------------------------------------------------------+--+
-100 rows selected (10.988 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority  from customer, orders, lineitem where c_mktsegment = 'BUILDING' and c_custkey = o_custkey and l_orderkey = o_orderkey and o_orderd ate < date('1995-03-15') and l_shipdate > date('1995-03-15') group by l_orderkey, o_orderdate, o_shippriority order by revenue des c, o_orderdate limit 10;
+100 rows selected (30.304 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority from custome r, orders, lineitem where c_mktsegment = 'BUILDING' and c_custkey = o_custkey and l_orderkey = o_orderkey and o_orderdate < date('1995-03-15')  and l_shipdate > date('1995-03-15') group by l_orderkey, o_orderdate, o_shippriority order by revenue desc, o_orderdate limit 10;
 +-------------+---------------------+--------------+-----------------+--+
 | l_orderkey  |       revenue       | o_orderdate  | o_shippriority  |
 +-------------+---------------------+--------------+-----------------+--+
@@ -207,9 +202,9 @@ No rows selected (0.104 seconds)
 | 16384100    | 421478.7294         | 1995-03-02   | 0               |
 | 52974151    | 415367.1194999999   | 1995-02-05   | 0               |
 +-------------+---------------------+--------------+-----------------+--+
-10 rows selected (8.613 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select o_orderpriority, count(*) as order_count from orders where o_orderdate >= date('1993-07-01')  and o_orderdate < date('1993-10-01') and exists ( select * from lineitem where l_orderkey = o_orderkey and l_commitdate < l_recei ptdate ) group by o_orderpriority order by o_orderpriority;
+10 rows selected (21.993 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select o_orderpriority, count(*) as order_count from orders where o_orderdate >= date('1993-07-01') and o_order date < date('1993-10-01') and exists ( select * from lineitem where l_orderkey = o_orderkey and l_commitdate < l_receiptdate ) group by o_order priority order by o_orderpriority;
 +------------------+--------------+--+
 | o_orderpriority  | order_count  |
 +------------------+--------------+--+
@@ -219,234 +214,234 @@ No rows selected (0.104 seconds)
 | 4-NOT SPECIFIED  | 105422       |
 | 5-LOW            | 105356       |
 +------------------+--------------+--+
-5 rows selected (29.669 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select n_name, sum(l_extendedprice * (1 - l_discount)) as revenue from customer, orders, lineitem,  supplier, nation, region where c_custkey = o_custkey and l_orderkey = o_orderkey and l_suppkey = s_suppkey and c_nationkey = s_nat ionkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'ASIA' and o_orderdate >= date('1994-01-01') and o _orderdate < date('1995-01-01') group by n_name order by revenue desc;
+5 rows selected (45.571 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select n_name, sum(l_extendedprice * (1 - l_discount)) as revenue from customer, orders, lineitem, supplier, na tion, region where c_custkey = o_custkey and l_orderkey = o_orderkey and l_suppkey = s_suppkey and c_nationkey = s_nationkey and s_nationkey =  n_nationkey and n_regionkey = r_regionkey and r_name = 'ASIA' and o_orderdate >= date('1994-01-01') and o_orderdate < date('1995-01-01') group  by n_name order by revenue desc;
 +------------+-----------------------+--+
 |   n_name   |        revenue        |
 +------------+-----------------------+--+
-| INDIA      | 5.3686258799949986E8  |
+| INDIA      | 5.3686258799950016E8  |
 | CHINA      | 5.353508299282001E8   |
-| VIETNAM    | 5.322693887176E8      |
-| JAPAN      | 5.267668371444E8      |
+| VIETNAM    | 5.322693887175998E8   |
+| JAPAN      | 5.267668371444002E8   |
 | INDONESIA  | 5.231768523188998E8   |
 +------------+-----------------------+--+
-5 rows selected (17.953 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select sum(l_extendedprice * l_discount) as revenue from lineitem where l_shipdate >= date('1994-01 -01') and l_shipdate < date('1995-01-01') and l_discount between 0.05 and 0.07 and l_quantity < 24;
+5 rows selected (36.134 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select sum(l_extendedprice * l_discount) as revenue from lineitem where l_shipdate >= date('1994-01-01') and l_ shipdate < date('1995-01-01') and l_discount between 0.05 and 0.07 and l_quantity < 24;
 +-----------------------+--+
 |        revenue        |
 +-----------------------+--+
-| 1.2301136360101132E9  |
+| 1.2301136360100994E9  |
 +-----------------------+--+
-1 row selected (0.901 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select supp_nation, cust_nation, l_year, sum(volume) as revenue from ( select n1.n_name as supp_nat ion, n2.n_name as cust_nation, year(l_shipdate) as l_year, l_extendedprice * (1 - l_discount) as volume from supplier,lineitem,ord ers,customer,nation n1,nation n2 where s_suppkey = l_suppkey and o_orderkey = l_orderkey and c_custkey = o_custkey and s_nationkey  = n1.n_nationkey and c_nationkey = n2.n_nationkey and ( (n1.n_name = 'FRANCE' and n2.n_name = 'GERMANY') or (n1.n_name = 'GERMANY ' and n2.n_name = 'FRANCE') ) and l_shipdate between date('1995-01-01') and date('1996-12-31') ) as shipping group by supp_nation,  cust_nation, l_year order by supp_nation, cust_nation, l_year;
+1 row selected (0.511 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select supp_nation, cust_nation, l_year, sum(volume) as revenue from ( select n1.n_name as supp_nation, n2.n_na me as cust_nation, year(l_shipdate) as l_year, l_extendedprice * (1 - l_discount) as volume from supplier,lineitem,orders,customer,nation n1,na tion n2 where s_suppkey = l_suppkey and o_orderkey = l_orderkey and c_custkey = o_custkey and s_nationkey = n1.n_nationkey and c_nationkey = n2 .n_nationkey and ( (n1.n_name = 'FRANCE' and n2.n_name = 'GERMANY') or (n1.n_name = 'GERMANY' and n2.n_name = 'FRANCE') ) and l_shipdate betwee n date('1995-01-01') and date('1996-12-31') ) as shipping group by supp_nation, cust_nation, l_year order by supp_nation, cust_nation, l_year;
 +--------------+--------------+---------+-----------------------+--+
 | supp_nation  | cust_nation  | l_year  |        revenue        |
 +--------------+--------------+---------+-----------------------+--+
-| FRANCE       | GERMANY      | 1995    | 5.2196014170029974E8  |
-| FRANCE       | GERMANY      | 1996    | 5.2479611038420033E8  |
-| GERMANY      | FRANCE       | 1995    | 5.421997000546006E8   |
-| GERMANY      | FRANCE       | 1996    | 5.3364092626140034E8  |
+| FRANCE       | GERMANY      | 1995    | 5.219601417003E8      |
+| FRANCE       | GERMANY      | 1996    | 5.2479611038420004E8  |
+| GERMANY      | FRANCE       | 1995    | 5.421997000546002E8   |
+| GERMANY      | FRANCE       | 1996    | 5.336409262614001E8   |
 +--------------+--------------+---------+-----------------------+--+
-4 rows selected (12.58 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select o_year, sum(case when nation = 'BRAZIL' then volume else 0 end) / sum(volume) as mkt_share f rom (select year(o_orderdate) as o_year, l_extendedprice * (1-l_discount) as volume, n2.n_name as nation from part,supplier,lineit em,orders,customer,nation n1,nation n2,region where p_partkey = l_partkey and s_suppkey = l_suppkey and l_orderkey = o_orderkey an d o_custkey = c_custkey and c_nationkey = n1.n_nationkey and n1.n_regionkey = r_regionkey and r_name = 'AMERICA' and s_nationkey =  n2.n_nationkey and o_orderdate between date('1995-01-01') and date('1996-12-31') and p_type = 'ECONOMY ANODIZED STEEL' ) as all_n ations group by o_year order by o_year;
+4 rows selected (33.483 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select o_year, sum(case when nation = 'BRAZIL' then volume else 0 end) / sum(volume) as mkt_share from (select  year(o_orderdate) as o_year, l_extendedprice * (1-l_discount) as volume, n2.n_name as nation from part,supplier,lineitem,orders,customer,nation  n1,nation n2,region where p_partkey = l_partkey and s_suppkey = l_suppkey and l_orderkey = o_orderkey and o_custkey = c_custkey and c_nationke y = n1.n_nationkey and n1.n_regionkey = r_regionkey and r_name = 'AMERICA' and s_nationkey = n2.n_nationkey and o_orderdate between date('1995- 01-01') and date('1996-12-31') and p_type = 'ECONOMY ANODIZED STEEL' ) as all_nations group by o_year order by o_year;
 +---------+----------------------+--+
 | o_year  |      mkt_share       |
 +---------+----------------------+--+
-| 1995    | 0.03882014251433217  |
-| 1996    | 0.03948968749183995  |
+| 1995    | 0.0388201425143322   |
+| 1996    | 0.03948968749183991  |
 +---------+----------------------+--+
-2 rows selected (6.738 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select nation, o_year, sum(amount) as sum_profit from ( select n_name as nation, year(o_orderdate)  as o_year, l_extendedprice * (1 - l_discount) - ps_supplycost * l_quantity as amount from part, supplier, lineitem, partsupp, orde rs, nation where s_suppkey = l_suppkey and ps_suppkey = l_suppkey and ps_partkey = l_partkey and p_partkey = l_partkey and o_order key = l_orderkey and s_nationkey = n_nationkey and p_name like '%green%' ) as profit group by nation, o_year order by nation, o_ye ar desc;
+2 rows selected (16.868 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select nation, o_year, sum(amount) as sum_profit from ( select n_name as nation, year(o_orderdate) as o_year, l _extendedprice * (1 - l_discount) - ps_supplycost * l_quantity as amount from part, supplier, lineitem, partsupp, orders, nation where s_suppke y = l_suppkey and ps_suppkey = l_suppkey and ps_partkey = l_partkey and p_partkey = l_partkey and o_orderkey = l_orderkey and s_nationkey = n_n ationkey and p_name like '%green%' ) as profit group by nation, o_year order by nation, o_year desc;
 +-----------------+---------+-----------------------+--+
 |     nation      | o_year  |      sum_profit       |
 +-----------------+---------+-----------------------+--+
-| ALGERIA         | 1998    | 2.715040465508001E8   |
-| ALGERIA         | 1997    | 4.5703598695549965E8  |
-| ALGERIA         | 1996    | 4.571251990414001E8   |
-| ALGERIA         | 1995    | 4.6097249704910004E8  |
-| ALGERIA         | 1994    | 4.564449757127001E8   |
-| ALGERIA         | 1993    | 4.5644992641379994E8  |
-| ALGERIA         | 1992    | 4.595483547680002E8   |
-| ARGENTINA       | 1998    | 2.777929849141E8      |
-| ARGENTINA       | 1997    | 4.675559145593996E8   |
-| ARGENTINA       | 1996    | 4.7388619274530005E8  |
-| ARGENTINA       | 1995    | 4.684572599584001E8   |
-| ARGENTINA       | 1994    | 4.670719636040998E8   |
-| ARGENTINA       | 1993    | 4.6952399191880006E8  |
-| ARGENTINA       | 1992    | 4.7116967531100005E8  |
-| BRAZIL          | 1998    | 2.7815300202209985E8  |
-| BRAZIL          | 1997    | 4.605972319522001E8   |
-| BRAZIL          | 1996    | 4.654716042948999E8   |
+| ALGERIA         | 1998    | 2.7150404655079997E8  |
+| ALGERIA         | 1997    | 4.570359869555E8      |
+| ALGERIA         | 1996    | 4.5712519904139996E8  |
+| ALGERIA         | 1995    | 4.6097249704909986E8  |
+| ALGERIA         | 1994    | 4.564449757127E8      |
+| ALGERIA         | 1993    | 4.564499264138002E8   |
+| ALGERIA         | 1992    | 4.5954835476799995E8  |
+| ARGENTINA       | 1998    | 2.7779298491410017E8  |
+| ARGENTINA       | 1997    | 4.6755591455939966E8  |
+| ARGENTINA       | 1996    | 4.7388619274529964E8  |
+| ARGENTINA       | 1995    | 4.684572599584E8      |
+| ARGENTINA       | 1994    | 4.6707196360409987E8  |
+| ARGENTINA       | 1993    | 4.695239919188001E8   |
+| ARGENTINA       | 1992    | 4.711696753109999E8   |
+| BRAZIL          | 1998    | 2.781530020221001E8   |
+| BRAZIL          | 1997    | 4.605972319521998E8   |
+| BRAZIL          | 1996    | 4.6547160429490024E8  |
 | BRAZIL          | 1995    | 4.6639197806449986E8  |
 | BRAZIL          | 1994    | 4.668336909775002E8   |
-| BRAZIL          | 1993    | 4.589087737973999E8   |
-| BRAZIL          | 1992    | 4.6824949154760015E8  |
-| CANADA          | 1998    | 2.754391019486001E8   |
-| CANADA          | 1997    | 4.740820961968998E8   |
-| CANADA          | 1996    | 4.777165841505999E8   |
-| CANADA          | 1995    | 4.731325767989001E8   |
-| CANADA          | 1994    | 4.8101661051839995E8  |
-| CANADA          | 1993    | 4.7295355526400024E8  |
-| CANADA          | 1992    | 4.818056409015999E8   |
+| BRAZIL          | 1993    | 4.5890877379740006E8  |
+| BRAZIL          | 1992    | 4.6824949154759985E8  |
+| CANADA          | 1998    | 2.754391019486E8      |
+| CANADA          | 1997    | 4.740820961969004E8   |
+| CANADA          | 1996    | 4.777165841505996E8   |
+| CANADA          | 1995    | 4.731325767989E8      |
+| CANADA          | 1994    | 4.810166105184002E8   |
+| CANADA          | 1993    | 4.729535552639999E8   |
+| CANADA          | 1992    | 4.8180564090159994E8  |
 | CHINA           | 1998    | 2.7207064066929996E8  |
-| CHINA           | 1997    | 4.559871317971999E8   |
-| CHINA           | 1996    | 4.615505939761001E8   |
-| CHINA           | 1995    | 4.598024196238E8      |
-| CHINA           | 1994    | 4.6836435667210037E8  |
-| CHINA           | 1993    | 4.6134270196599996E8  |
-| CHINA           | 1992    | 4.5953125510260016E8  |
-| EGYPT           | 1998    | 2.7582646856599987E8  |
-| EGYPT           | 1997    | 4.689144211736997E8   |
-| EGYPT           | 1996    | 4.8084617134550023E8  |
-| EGYPT           | 1995    | 4.6326975555759984E8  |
+| CHINA           | 1997    | 4.559871317972002E8   |
+| CHINA           | 1996    | 4.615505939761E8      |
+| CHINA           | 1995    | 4.598024196238002E8   |
+| CHINA           | 1994    | 4.683643566721E8      |
+| CHINA           | 1993    | 4.613427019660001E8   |
+| CHINA           | 1992    | 4.5953125510260004E8  |
+| EGYPT           | 1998    | 2.758264685659999E8   |
+| EGYPT           | 1997    | 4.689144211736999E8   |
+| EGYPT           | 1996    | 4.808461713455004E8   |
+| EGYPT           | 1995    | 4.632697555575999E8   |
 | EGYPT           | 1994    | 4.747771634912999E8   |
-| EGYPT           | 1993    | 4.709184438883998E8   |
-| EGYPT           | 1992    | 4.711226010569E8      |
-| ETHIOPIA        | 1998    | 2.6771531299720004E8  |
-| ETHIOPIA        | 1997    | 4.630421177116999E8   |
-| ETHIOPIA        | 1996    | 4.6218876184289986E8  |
-| ETHIOPIA        | 1995    | 4.635333674488998E8   |
-| ETHIOPIA        | 1994    | 4.620073992743999E8   |
-| ETHIOPIA        | 1993    | 4.615825367294999E8   |
-| ETHIOPIA        | 1992    | 4.671854407233001E8   |
-| FRANCE          | 1998    | 2.6684390150579998E8  |
-| FRANCE          | 1997    | 4.5807078530499977E8  |
-| FRANCE          | 1996    | 4.6129651448700005E8  |
+| EGYPT           | 1993    | 4.709184438883997E8   |
+| EGYPT           | 1992    | 4.711226010569002E8   |
+| ETHIOPIA        | 1998    | 2.6771531299719983E8  |
+| ETHIOPIA        | 1997    | 4.630421177116996E8   |
+| ETHIOPIA        | 1996    | 4.621887618429E8      |
+| ETHIOPIA        | 1995    | 4.6353336744890004E8  |
+| ETHIOPIA        | 1994    | 4.620073992744001E8   |
+| ETHIOPIA        | 1993    | 4.6158253672950006E8  |
+| ETHIOPIA        | 1992    | 4.671854407232999E8   |
+| FRANCE          | 1998    | 2.6684390150579995E8  |
+| FRANCE          | 1997    | 4.580707853049997E8   |
+| FRANCE          | 1996    | 4.61296514487E8       |
 | FRANCE          | 1995    | 4.6604794412930006E8  |
-| FRANCE          | 1994    | 4.6263495990990025E8  |
-| FRANCE          | 1993    | 4.567293443948998E8   |
+| FRANCE          | 1994    | 4.626349599099002E8   |
+| FRANCE          | 1993    | 4.5672934439489985E8  |
 | FRANCE          | 1992    | 4.645196317118999E8   |
-| GERMANY         | 1998    | 2.773975560937999E8   |
-| GERMANY         | 1997    | 4.701196653475999E8   |
-| GERMANY         | 1996    | 4.6159628610899985E8  |
-| GERMANY         | 1995    | 4.6559789430349994E8  |
-| GERMANY         | 1994    | 4.7631792826780015E8  |
-| GERMANY         | 1993    | 4.709112931517001E8   |
-| GERMANY         | 1992    | 4.6534798901320034E8  |
-| INDIA           | 1998    | 2.760608598202001E8   |
-| INDIA           | 1997    | 4.613500104504998E8   |
-| INDIA           | 1996    | 4.655030816256E8      |
+| GERMANY         | 1998    | 2.773975560937998E8   |
+| GERMANY         | 1997    | 4.7011966534759986E8  |
+| GERMANY         | 1996    | 4.6159628610899997E8  |
+| GERMANY         | 1995    | 4.6559789430350006E8  |
+| GERMANY         | 1994    | 4.7631792826779985E8  |
+| GERMANY         | 1993    | 4.709112931517002E8   |
+| GERMANY         | 1992    | 4.653479890132003E8   |
+| INDIA           | 1998    | 2.7606085982019997E8  |
+| INDIA           | 1997    | 4.613500104505001E8   |
+| INDIA           | 1996    | 4.655030816256001E8   |
 | INDIA           | 1995    | 4.765333731711001E8   |
-| INDIA           | 1994    | 4.7064067437179995E8  |
-| INDIA           | 1993    | 4.7616683172070026E8  |
+| INDIA           | 1994    | 4.706406743718E8      |
+| INDIA           | 1993    | 4.7616683172070014E8  |
 | INDIA           | 1992    | 4.684650801243999E8   |
-| INDONESIA       | 1998    | 2.6388769763939995E8  |
-| INDONESIA       | 1997    | 4.5975844238459957E8  |
-| INDONESIA       | 1996    | 4.6374881007060003E8  |
+| INDONESIA       | 1998    | 2.6388769763939992E8  |
+| INDONESIA       | 1997    | 4.597584423845997E8   |
+| INDONESIA       | 1996    | 4.637488100705998E8   |
 | INDONESIA       | 1995    | 4.558279645786E8      |
-| INDONESIA       | 1994    | 4.6514804884420013E8  |
-| INDONESIA       | 1993    | 4.5951011534580004E8  |
-| INDONESIA       | 1992    | 4.597903635135E8      |
-| IRAN            | 1998    | 2.7695652958959997E8  |
-| IRAN            | 1997    | 4.6112322947620004E8  |
-| IRAN            | 1996    | 4.649684756132002E8   |
-| IRAN            | 1995    | 4.711621331922E8      |
-| IRAN            | 1994    | 4.747859869553001E8   |
-| IRAN            | 1993    | 4.6956283676820016E8  |
-| IRAN            | 1992    | 4.654657158846001E8   |
+| INDONESIA       | 1994    | 4.6514804884419996E8  |
+| INDONESIA       | 1993    | 4.595101153458003E8   |
+| INDONESIA       | 1992    | 4.597903635135001E8   |
+| IRAN            | 1998    | 2.769565295895999E8   |
+| IRAN            | 1997    | 4.6112322947619975E8  |
+| IRAN            | 1996    | 4.6496847561319995E8  |
+| IRAN            | 1995    | 4.711621331921999E8   |
+| IRAN            | 1994    | 4.747859869553003E8   |
+| IRAN            | 1993    | 4.695628367681997E8   |
+| IRAN            | 1992    | 4.654657158846002E8   |
 | IRAQ            | 1998    | 2.771848900448001E8   |
-| IRAQ            | 1997    | 4.6637860077130014E8  |
+| IRAQ            | 1997    | 4.6637860077129984E8  |
 | IRAQ            | 1996    | 4.801338991071999E8   |
-| IRAQ            | 1995    | 4.6603406353900033E8  |
-| IRAQ            | 1994    | 4.7096841321030015E8  |
-| IRAQ            | 1993    | 4.7323352386179966E8  |
-| IRAQ            | 1992    | 4.743256364768E8      |
-| JAPAN           | 1998    | 2.746764711870998E8   |
+| IRAQ            | 1995    | 4.660340635389998E8   |
+| IRAQ            | 1994    | 4.709684132103001E8   |
+| IRAQ            | 1993    | 4.732335238617999E8   |
+| IRAQ            | 1992    | 4.743256364767999E8   |
+| JAPAN           | 1998    | 2.746764711871003E8   |
 | JAPAN           | 1997    | 4.6835552924139994E8  |
-| JAPAN           | 1996    | 4.6325422089890015E8  |
-| JAPAN           | 1995    | 4.6221105657159996E8  |
-| JAPAN           | 1994    | 4.7642576289220023E8  |
-| JAPAN           | 1993    | 4.779059249632003E8   |
-| JAPAN           | 1992    | 4.7225145852969986E8  |
+| JAPAN           | 1996    | 4.632542208988998E8   |
+| JAPAN           | 1995    | 4.622110565715999E8   |
+| JAPAN           | 1994    | 4.7642576289220035E8  |
+| JAPAN           | 1993    | 4.779059249632001E8   |
+| JAPAN           | 1992    | 4.722514585297E8      |
 | JORDAN          | 1998    | 2.7101128472210014E8  |
 | JORDAN          | 1997    | 4.5968706110609996E8  |
 +-----------------+---------+-----------------------+--+
 |     nation      | o_year  |      sum_profit       |
 +-----------------+---------+-----------------------+--+
-| JORDAN          | 1996    | 4.563810444641999E8   |
-| JORDAN          | 1995    | 4.640958071109E8      |
+| JORDAN          | 1996    | 4.5638104446419996E8  |
+| JORDAN          | 1995    | 4.6409580711090004E8  |
 | JORDAN          | 1994    | 4.6671422372759986E8  |
-| JORDAN          | 1993    | 4.6238775750119984E8  |
-| JORDAN          | 1992    | 4.635314459571E8      |
-| KENYA           | 1998    | 2.783191011280999E8   |
-| KENYA           | 1997    | 4.7708660757960016E8  |
-| KENYA           | 1996    | 4.824079763831997E8   |
-| KENYA           | 1995    | 4.738772396725001E8   |
-| KENYA           | 1994    | 4.717836820154E8      |
-| KENYA           | 1993    | 4.754824149827E8      |
-| KENYA           | 1992    | 4.761178409487E8      |
-| MOROCCO         | 1998    | 2.7210387477830005E8  |
-| MOROCCO         | 1997    | 4.6500145108280015E8  |
-| MOROCCO         | 1996    | 4.696650681006999E8   |
+| JORDAN          | 1993    | 4.623877575012E8      |
+| JORDAN          | 1992    | 4.6353144595709985E8  |
+| KENYA           | 1998    | 2.7831910112810016E8  |
+| KENYA           | 1997    | 4.7708660757960004E8  |
+| KENYA           | 1996    | 4.824079763832E8      |
+| KENYA           | 1995    | 4.738772396724998E8   |
+| KENYA           | 1994    | 4.717836820154003E8   |
+| KENYA           | 1993    | 4.754824149826999E8   |
+| KENYA           | 1992    | 4.761178409487002E8   |
+| MOROCCO         | 1998    | 2.721038747783001E8   |
+| MOROCCO         | 1997    | 4.650014510828003E8   |
+| MOROCCO         | 1996    | 4.6966506810069996E8  |
 | MOROCCO         | 1995    | 4.755475764424001E8   |
-| MOROCCO         | 1994    | 4.6420685439780015E8  |
-| MOROCCO         | 1993    | 4.625065824235998E8   |
-| MOROCCO         | 1992    | 4.661783689620999E8   |
-| MOZAMBIQUE      | 1998    | 2.738902131664998E8   |
-| MOZAMBIQUE      | 1997    | 4.603479519202001E8   |
-| MOZAMBIQUE      | 1996    | 4.599299263807999E8   |
-| MOZAMBIQUE      | 1995    | 4.515307793054E8      |
-| MOZAMBIQUE      | 1994    | 4.628804050591001E8   |
-| MOZAMBIQUE      | 1993    | 4.567986850443002E8   |
-| MOZAMBIQUE      | 1992    | 4.5281817736789995E8  |
+| MOROCCO         | 1994    | 4.642068543978001E8   |
+| MOROCCO         | 1993    | 4.625065824236003E8   |
+| MOROCCO         | 1992    | 4.661783689620998E8   |
+| MOZAMBIQUE      | 1998    | 2.738902131664999E8   |
+| MOZAMBIQUE      | 1997    | 4.603479519201999E8   |
+| MOZAMBIQUE      | 1996    | 4.599299263808002E8   |
+| MOZAMBIQUE      | 1995    | 4.5153077930540013E8  |
+| MOZAMBIQUE      | 1994    | 4.6288040505909985E8  |
+| MOZAMBIQUE      | 1993    | 4.567986850443001E8   |
+| MOZAMBIQUE      | 1992    | 4.528181773678998E8   |
 | PERU            | 1998    | 2.6770770359890002E8  |
 | PERU            | 1997    | 4.614924377051002E8   |
-| PERU            | 1996    | 4.651313918026999E8   |
-| PERU            | 1995    | 4.613702475431999E8   |
-| PERU            | 1994    | 4.6577064787820023E8  |
+| PERU            | 1996    | 4.6513139180269986E8  |
+| PERU            | 1995    | 4.613702475432002E8   |
+| PERU            | 1994    | 4.657706478781996E8   |
 | PERU            | 1993    | 4.671234951540001E8   |
-| PERU            | 1992    | 4.6744517500889975E8  |
-| ROMANIA         | 1998    | 2.695488319482998E8   |
-| ROMANIA         | 1997    | 4.6042874360150015E8  |
-| ROMANIA         | 1996    | 4.599405930616002E8   |
-| ROMANIA         | 1995    | 4.6099900947079986E8  |
+| PERU            | 1992    | 4.674451750088999E8   |
+| ROMANIA         | 1998    | 2.6954883194829994E8  |
+| ROMANIA         | 1997    | 4.604287436015E8      |
+| ROMANIA         | 1996    | 4.599405930616003E8   |
+| ROMANIA         | 1995    | 4.609990094707997E8   |
 | ROMANIA         | 1994    | 4.526384485316999E8   |
 | ROMANIA         | 1993    | 4.658474318174002E8   |
-| ROMANIA         | 1992    | 4.6884494234080005E8  |
-| RUSSIA          | 1998    | 2.757984926762999E8   |
+| ROMANIA         | 1992    | 4.688449423408001E8   |
+| RUSSIA          | 1998    | 2.757984926762998E8   |
 | RUSSIA          | 1997    | 4.687932133854999E8   |
-| RUSSIA          | 1996    | 4.644636218953E8      |
-| RUSSIA          | 1995    | 4.6346447393849987E8  |
+| RUSSIA          | 1996    | 4.644636218953001E8   |
+| RUSSIA          | 1995    | 4.634644739385001E8   |
 | RUSSIA          | 1994    | 4.5988492675319993E8  |
-| RUSSIA          | 1993    | 4.623922068612998E8   |
-| RUSSIA          | 1992    | 4.683809415586994E8   |
-| SAUDI ARABIA    | 1998    | 2.7937813719750005E8  |
-| SAUDI ARABIA    | 1997    | 4.676535692806001E8   |
-| SAUDI ARABIA    | 1996    | 4.785963175015001E8   |
-| SAUDI ARABIA    | 1995    | 4.770554363485001E8   |
-| SAUDI ARABIA    | 1994    | 4.7108536207109994E8  |
-| SAUDI ARABIA    | 1993    | 4.6864536370149976E8  |
+| RUSSIA          | 1993    | 4.6239220686129975E8  |
+| RUSSIA          | 1992    | 4.6838094155869967E8  |
+| SAUDI ARABIA    | 1998    | 2.793781371974998E8   |
+| SAUDI ARABIA    | 1997    | 4.6765356928060013E8  |
+| SAUDI ARABIA    | 1996    | 4.7859631750149995E8  |
+| SAUDI ARABIA    | 1995    | 4.770554363485E8      |
+| SAUDI ARABIA    | 1994    | 4.7108536207109976E8  |
+| SAUDI ARABIA    | 1993    | 4.686453637014998E8   |
 | SAUDI ARABIA    | 1992    | 4.7981912023759985E8  |
-| UNITED KINGDOM  | 1998    | 2.699321522634999E8   |
-| UNITED KINGDOM  | 1997    | 4.635755396379E8      |
-| UNITED KINGDOM  | 1996    | 4.674512176874001E8   |
-| UNITED KINGDOM  | 1995    | 4.653089812708E8      |
-| UNITED KINGDOM  | 1994    | 4.6631740093979985E8  |
-| UNITED KINGDOM  | 1993    | 4.671409023099002E8   |
-| UNITED KINGDOM  | 1992    | 4.646294096612999E8   |
-| UNITED STATES   | 1998    | 2.717466987703E8      |
-| UNITED STATES   | 1997    | 4.662002872349999E8   |
+| UNITED KINGDOM  | 1998    | 2.6993215226349986E8  |
+| UNITED KINGDOM  | 1997    | 4.6357553963790005E8  |
+| UNITED KINGDOM  | 1996    | 4.674512176874004E8   |
+| UNITED KINGDOM  | 1995    | 4.6530898127079976E8  |
+| UNITED KINGDOM  | 1994    | 4.663174009397997E8   |
+| UNITED KINGDOM  | 1993    | 4.671409023098998E8   |
+| UNITED KINGDOM  | 1992    | 4.646294096613E8      |
+| UNITED STATES   | 1998    | 2.717466987703001E8   |
+| UNITED STATES   | 1997    | 4.662002872349998E8   |
 | UNITED STATES   | 1996    | 4.66726897764E8       |
-| UNITED STATES   | 1995    | 4.707970663205E8      |
-| UNITED STATES   | 1994    | 4.764478162560001E8   |
-| UNITED STATES   | 1993    | 4.601204272977997E8   |
-| UNITED STATES   | 1992    | 4.681577923022999E8   |
-| VIETNAM         | 1998    | 2.729795183274002E8   |
-| VIETNAM         | 1997    | 4.7377759076839995E8  |
-| VIETNAM         | 1996    | 4.660487771537004E8   |
-| VIETNAM         | 1995    | 4.6865819313310003E8  |
-| VIETNAM         | 1994    | 4.780196225095002E8   |
-| VIETNAM         | 1993    | 4.6927192567390007E8  |
+| UNITED STATES   | 1995    | 4.7079706632050014E8  |
+| UNITED STATES   | 1994    | 4.7644781625600034E8  |
+| UNITED STATES   | 1993    | 4.601204272977996E8   |
+| UNITED STATES   | 1992    | 4.681577923022998E8   |
+| VIETNAM         | 1998    | 2.729795183274001E8   |
+| VIETNAM         | 1997    | 4.737775907683999E8   |
+| VIETNAM         | 1996    | 4.660487771537E8      |
+| VIETNAM         | 1995    | 4.6865819313309985E8  |
+| VIETNAM         | 1994    | 4.780196225094998E8   |
+| VIETNAM         | 1993    | 4.6927192567389995E8  |
 | VIETNAM         | 1992    | 4.639629438713998E8   |
 +-----------------+---------+-----------------------+--+
-175 rows selected (10.787 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select c_custkey, c_name, sum(l_extendedprice * (1 - l_discount)) as revenue, c_acctbal, n_name, c_ address, c_phone, c_comment from customer, orders, lineitem, nation where c_custkey = o_custkey and l_orderkey = o_orderkey and o_ orderdate >= date('1993-10-01') and o_orderdate < date('1994-01-01') and l_returnflag = 'R' and c_nationkey = n_nationkey group by  c_custkey, c_name, c_acctbal, c_phone, n_name, c_address, c_comment order by revenue desc limit 20;
+175 rows selected (31.113 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select c_custkey, c_name, sum(l_extendedprice * (1 - l_discount)) as revenue, c_acctbal, n_name, c_address, c_p hone, c_comment from customer, orders, lineitem, nation where c_custkey = o_custkey and l_orderkey = o_orderkey and o_orderdate >= date('1993-1 0-01') and o_orderdate < date('1994-01-01') and l_returnflag = 'R' and c_nationkey = n_nationkey group by c_custkey, c_name, c_acctbal, c_phone , n_name, c_address, c_comment order by revenue desc limit 20;
 +------------+---------------------+--------------------+------------+----------------+----------------------------------------+------------------+----------------------------------------------------------------------------------------------------------------------+--+
 | c_custkey  |       c_name        |      revenue       | c_acctbal  |     n_name     |               c_address                |     c_phone      |                                                      c_comment                                                       |
 +------------+---------------------+--------------------+------------+----------------+----------------------------------------+------------------+----------------------------------------------------------------------------------------------------------------------+--+
@@ -454,42 +449,42 @@ No rows selected (0.104 seconds)
 | 1116802    | Customer#001116802  | 830214.1117        | 772.17     | JORDAN         | JpGQT3IHoogqB3ZMrSrzhBrVFObr           | 23-199-655-3770  | ests. quickly ironic deposits along the special requests a                                                           |
 | 508954     | Customer#000508954  | 826167.5138000001  | 3072.07    | ETHIOPIA       | zgafElAXecB3I7Ee1a9B                   | 15-880-510-9487  | ickly regular deposits. carefully regular instructions engage deposits. foxes are caref                              |
 | 1487503    | Customer#001487503  | 825996.5902999999  | 5398.11    | IRAN           | orychjo, O6c                           | 20-271-234-4401  | ccounts sleep carefully. furiously pending packages boost slyly after the quickly regular requests. pinto beans fro  |
-| 1461247    | Customer#001461247  | 775992.0819999999  | 3205.93    | SAUDI ARABIA   | jQZKjwNqttmC0BohJoGA4U                 | 30-137-949-5375  | atterns sleep blithely. fluffily pending accounts sleep furiously from the ironic deposits! blithely even i          |
+| 1461247    | Customer#001461247  | 775992.0819999998  | 3205.93    | SAUDI ARABIA   | jQZKjwNqttmC0BohJoGA4U                 | 30-137-949-5375  | atterns sleep blithely. fluffily pending accounts sleep furiously from the ironic deposits! blithely even i          |
 | 1316338    | Customer#001316338  | 765063.7002999999  | 8682.95    | INDIA          | bfz3FH  qaULsV7oiCn66z6ezkZBpcl        | 18-793-610-3832  | equests. regular, even excuses doze slyly against the blithely even accounts. slyly regular dinos                    |
-| 817849     | Customer#000817849  | 737664.7231999999  | -380.3     | MOROCCO        | 7gz7HbNoVNSbv23trx                     | 25-111-847-3201  | fully special accounts wake slyly among the sheaves. permanently brave requests use furiously amon                   |
+| 817849     | Customer#000817849  | 737664.7232        | -380.3     | MOROCCO        | 7gz7HbNoVNSbv23trx                     | 25-111-847-3201  | fully special accounts wake slyly among the sheaves. permanently brave requests use furiously amon                   |
 | 1335394    | Customer#001335394  | 731259.8674999999  | 3978.53    | VIETNAM        | mdNmISybrVNaIPSp                       | 31-760-271-2302  |  slyly even instructions. carefully silent ideas                                                                     |
-| 102358     | Customer#000102358  | 715001.8825000001  | 3564.9     | BRAZIL         | YpDpv0sP14F5xMUQbkDV,XGcMJypFV6jH      | 12-941-212-8350  | y slyly regular multipliers. furiously regular deposits nag final excuses. slyly special accounts haggle re          |
+| 102358     | Customer#000102358  | 715001.8825        | 3564.9     | BRAZIL         | YpDpv0sP14F5xMUQbkDV,XGcMJypFV6jH      | 12-941-212-8350  | y slyly regular multipliers. furiously regular deposits nag final excuses. slyly special accounts haggle re          |
 | 1432624    | Customer#001432624  | 713512.6431        | 205.08     | FRANCE         | NTCV7qvJ0PgcULFci,VdAB,0ZbSEZRdnnz,    | 16-550-232-2774  | ctions use regular requests. quickly bold somas cajole at the c                                                      |
 | 160528     | Customer#000160528  | 710673.3317        | 3425.52    | INDONESIA      | 6 2h0BtgTVFrbGbg7a7ThCOLvfvb2a8FOm2qs  | 19-670-600-6340  | sly regular theodolites. bold, regular foxes cajole.                                                                 |
-| 1345237    | Customer#001345237  | 707735.5745        | 6905.22    | FRANCE         | bhu14nxGOuDn2FldK6kidxkQt              | 16-133-279-4001  | s according to the express, unusual acc                                                                              |
+| 1345237    | Customer#001345237  | 707735.5744999999  | 6905.22    | FRANCE         | bhu14nxGOuDn2FldK6kidxkQt              | 16-133-279-4001  | s according to the express, unusual acc                                                                              |
 | 839816     | Customer#000839816  | 705643.2854        | 2110.25    | UNITED STATES  | AROroot0eKdCxq                         | 34-453-282-7925  |  unusual requests haggle slyly alongside of the slyly unusual ideas. f                                               |
 | 1136716    | Customer#001136716  | 695043.5606        | 5886.01    | CHINA          | uAIqfk27UKRIIBZLUvKDfUOyh              | 28-729-762-5783  | e foxes. bold orbits impress slyly about the regular, regular theodolites; carefully exp                             |
-| 1439413    | Customer#001439413  | 690161.9783000001  | 8808.65    | ETHIOPIA       | WweMOTcCq4A8yHDL                       | 15-432-961-8772  | quick foxes are. fluffily regular deposits wake besides the sl                                                       |
+| 1439413    | Customer#001439413  | 690161.9783        | 8808.65    | ETHIOPIA       | WweMOTcCq4A8yHDL                       | 15-432-961-8772  | quick foxes are. fluffily regular deposits wake besides the sl                                                       |
 | 1392475    | Customer#001392475  | 685464.4086        | 593.26     | SAUDI ARABIA   |  PHuNdZucsuZvpiKqcsBVPY0R jeHSBZL      | 30-640-220-2095  |  boldly-- slyly careful requests sleep after the slyly regular depo                                                  |
 | 616909     | Customer#000616909  | 684978.1044000001  | 2660.84    | EGYPT          | iKRlIpRSp65EFpPY47d                    | 14-185-768-2185  | uests. theodolites haggle abov                                                                                       |
 | 314272     | Customer#000314272  | 682212.6365        | 5127.92    | UNITED STATES  | sfg9XaV58yPqF7Wo0Akpif42GFh6           | 34-674-752-5199  | fix carefully deposits. even packages haggle. fluffily unusual platelets h                                           |
 | 1472980    | Customer#001472980  | 677765.918         | 6003.36    | IRAQ           | iie M4kwzvAwMV Hpvv                    | 21-506-776-4657  | s use slyly thinly final deposits. ironic pinto beans poach furiously bl                                             |
 | 1486201    | Customer#001486201  | 674878.4539        | -276.92    | JORDAN         | TJhgKueFwrrtXLtenhlw sC2N              | 23-611-797-4750  | ag. deposits along the blithely express instructions w                                                               |
 +------------+---------------------+--------------------+------------+----------------+----------------------------------------+------------------+----------------------------------------------------------------------------------------------------------------------+--+
-20 rows selected (7.962 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select ps_partkey, sum(ps_supplycost * ps_availqty) as value from partsupp, supplier, nation where  ps_suppkey = s_suppkey and s_nationkey = n_nationkey and n_name = 'GERMANY' group by ps_partkey having sum(ps_supplycost * ps_avai lqty) > ( select sum(ps_supplycost * ps_availqty) * 0.0001000000 s from partsupp, supplier, nation where ps_suppkey = s_suppkey an d s_nationkey = n_nationkey and n_name = 'GERMANY' ) order by value desc;
+20 rows selected (29.14 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select ps_partkey, sum(ps_supplycost * ps_availqty) as value from partsupp, supplier, nation where ps_suppkey =  s_suppkey and s_nationkey = n_nationkey and n_name = 'GERMANY' group by ps_partkey having sum(ps_supplycost * ps_availqty) > ( select sum(ps_s upplycost * ps_availqty) * 0.0001000000 s from partsupp, supplier, nation where ps_suppkey = s_suppkey and s_nationkey = n_nationkey and n_name  = 'GERMANY' ) order by value desc;
 +-------------+--------+--+
 | ps_partkey  | value  |
 +-------------+--------+--+
 +-------------+--------+--+
-No rows selected (4.154 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select l_shipmode, sum(case when o_orderpriority = '1-URGENT' or o_orderpriority = '2-HIGH' then 1  else 0 end) as high_line_count, sum(case when o_orderpriority <> '1-URGENT' and o_orderpriority <> '2-HIGH' then 1 else 0 end) as  low_line_count from orders, lineitem where o_orderkey = l_orderkey and l_shipmode in ('MAIL', 'SHIP') and l_commitdate < l_receipt date and l_shipdate < l_commitdate and l_receiptdate >= date('1994-01-01') and l_receiptdate < date('1995-01-01') group by l_shipm ode order by l_shipmode;
+No rows selected (4.312 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select l_shipmode, sum(case when o_orderpriority = '1-URGENT' or o_orderpriority = '2-HIGH' then 1 else 0 end)  as high_line_count, sum(case when o_orderpriority <> '1-URGENT' and o_orderpriority <> '2-HIGH' then 1 else 0 end) as low_line_count from order s, lineitem where o_orderkey = l_orderkey and l_shipmode in ('MAIL', 'SHIP') and l_commitdate < l_receiptdate and l_shipdate < l_commitdate and  l_receiptdate >= date('1994-01-01') and l_receiptdate < date('1995-01-01') group by l_shipmode order by l_shipmode;
 +-------------+------------------+-----------------+--+
 | l_shipmode  | high_line_count  | low_line_count  |
 +-------------+------------------+-----------------+--+
 | MAIL        | 62071            | 93045           |
 | SHIP        | 62426            | 93261           |
 +-------------+------------------+-----------------+--+
-2 rows selected (3.871 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select c_count, count(*) as custdist from (select c_custkey, count(o_orderkey) as c_count from cust omer left outer join orders on ( c_custkey = o_custkey and o_comment not like '%special%requests%' ) group by c_custkey ) as c_ord ers group by c_count order by custdist desc, c_count desc;
+2 rows selected (6.981 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select c_count, count(*) as custdist from (select c_custkey, count(o_orderkey) as c_count from customer left ou ter join orders on ( c_custkey = o_custkey and o_comment not like '%special%requests%' ) group by c_custkey ) as c_orders group by c_count orde r by custdist desc, c_count desc;
 +----------+-----------+--+
 | c_count  | custdist  |
 +----------+-----------+--+
@@ -540,39 +535,39 @@ No rows selected (4.154 seconds)
 | 45       | 1         |
 | 43       | 1         |
 +----------+-----------+--+
-46 rows selected (10.538 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select 100.00 * sum(case when p_type like 'PROMO%' then l_extendedprice * (1 - l_discount) else 0 e nd) / sum(l_extendedprice * (1 - l_discount)) as promo_revenue from lineitem, part where l_partkey = p_partkey and l_shipdate >= d ate('1995-09-01') and l_shipdate < date('1995-10-01');
+46 rows selected (20.372 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select 100.00 * sum(case when p_type like 'PROMO%' then l_extendedprice * (1 - l_discount) else 0 end) / sum(l_ extendedprice * (1 - l_discount)) as promo_revenue from lineitem, part where l_partkey = p_partkey and l_shipdate >= date('1995-09-01') and l_s hipdate < date('1995-10-01');
 +---------------------+--+
 |    promo_revenue    |
 +---------------------+--+
-| 16.647594941615107  |
+| 16.647594941615097  |
 +---------------------+--+
-1 row selected (1.274 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> create view revenue (supplier_no, total_revenue) as select l_suppkey, sum(l_extendedprice * (1 - l_ discount)) from lineitem where l_shipdate >= date('1996-01-01') and l_shipdate < date('1996-04-01') group by l_suppkey;
+1 row selected (2.246 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> create view revenue (supplier_no, total_revenue) as select l_suppkey, sum(l_extendedprice * (1 - l_discount)) f rom lineitem where l_shipdate >= date('1996-01-01') and l_shipdate < date('1996-04-01') group by l_suppkey;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.165 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select s_suppkey, s_name, s_address, s_phone, total_revenue from supplier,revenue where s_suppkey =  supplier_no and total_revenue = ( select max(total_revenue) from revenue ) order by s_suppkey;
-+------------+---------------------+-------------------------------------------+------------------+----------------+--+
-| s_suppkey  |       s_name        |                 s_address                 |     s_phone      | total_revenue  |
-+------------+---------------------+-------------------------------------------+------------------+----------------+--+
-| 69998      | Supplier#000069998  | ,ZT4VX2ygq9dLsG298SbYYSVUqeH,jhLSRVxNxGv  | 16-386-278-9829  | 2194132.8166   |
-+------------+---------------------+-------------------------------------------+------------------+----------------+--+
-1 row selected (2.898 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> drop view revenue;
+No rows selected (0.101 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select s_suppkey, s_name, s_address, s_phone, total_revenue from supplier,revenue where s_suppkey = supplier_no  and total_revenue = ( select max(total_revenue) from revenue ) order by s_suppkey;
++------------+---------------------+-------------------------------------------+------------------+---------------------+--+
+| s_suppkey  |       s_name        |                 s_address                 |     s_phone      |    total_revenue    |
++------------+---------------------+-------------------------------------------+------------------+---------------------+--+
+| 69998      | Supplier#000069998  | ,ZT4VX2ygq9dLsG298SbYYSVUqeH,jhLSRVxNxGv  | 16-386-278-9829  | 2194132.8165999996  |
++------------+---------------------+-------------------------------------------+------------------+---------------------+--+
+1 row selected (4.391 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> drop view revenue;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.117 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select p_brand, p_type, p_size, count(distinct ps_suppkey) as supplier_cnt from partsupp, part wher e p_partkey = ps_partkey and p_brand <> 'Brand#45' and p_type not like 'MEDIUM POLISHED%' and p_size in (49, 14, 23, 45, 19, 3, 36 , 9) and ps_suppkey not in ( select s_suppkey from supplier where s_comment like '%Customer%Complaints%' ) group by p_brand, p_typ e, p_size order by supplier_cnt desc, p_brand, p_type, p_size;
+No rows selected (0.137 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select p_brand, p_type, p_size, count(distinct ps_suppkey) as supplier_cnt from partsupp, part where p_partkey  = ps_partkey and p_brand <> 'Brand#45' and p_type not like 'MEDIUM POLISHED%' and p_size in (49, 14, 23, 45, 19, 3, 36, 9) and ps_suppkey not i n ( select s_suppkey from supplier where s_comment like '%Customer%Complaints%' ) group by p_brand, p_type, p_size order by supplier_cnt desc,  p_brand, p_type, p_size;
 +-----------+----------------------------+---------+---------------+--+
 |  p_brand  |           p_type           | p_size  | supplier_cnt  |
 +-----------+----------------------------+---------+---------------+--+
@@ -29251,17 +29246,17 @@ No rows selected (0.117 seconds)
 | Brand#54  | ECONOMY PLATED BRASS       | 14      | 4             |
 | Brand#55  | STANDARD BURNISHED BRASS   | 14      | 4             |
 +-----------+----------------------------+---------+---------------+--+
-27,840 rows selected (12.762 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select sum(l_extendedprice) / 7.0 as avg_yearly from lineitem,part where p_partkey = l_partkey and  p_brand = 'Brand#23' and p_container = 'MED BOX' and l_quantity < ( select 0.2 * avg(l_quantity) from lineitem where l_partkey = p _partkey );
-+--------------------+--+
-|     avg_yearly     |
-+--------------------+--+
-| 3295493.512857143  |
-+--------------------+--+
-1 row selected (6.622 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select c_name, c_custkey, o_orderkey, o_orderdate, o_totalprice, sum(l_quantity) from customer, ord ers, lineitem where o_orderkey in ( select l_orderkey from lineitem group by l_orderkey having sum(l_quantity) > 300 ) and c_custk ey = o_custkey and o_orderkey = l_orderkey group by c_name, c_custkey, o_orderkey, o_orderdate, o_totalprice order by o_totalprice  desc, o_orderdate;
+27,840 rows selected (38.181 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select sum(l_extendedprice) / 7.0 as avg_yearly from lineitem,part where p_partkey = l_partkey and p_brand = 'B rand#23' and p_container = 'MED BOX' and l_quantity < ( select 0.2 * avg(l_quantity) from lineitem where l_partkey = p_partkey );
++---------------------+--+
+|     avg_yearly      |
++---------------------+--+
+| 3295493.5128571433  |
++---------------------+--+
+1 row selected (12.824 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select c_name, c_custkey, o_orderkey, o_orderdate, o_totalprice, sum(l_quantity) from customer, orders, lineite m where o_orderkey in ( select l_orderkey from lineitem group by l_orderkey having sum(l_quantity) > 300 ) and c_custkey = o_custkey and o_orde rkey = l_orderkey group by c_name, c_custkey, o_orderkey, o_orderdate, o_totalprice order by o_totalprice desc, o_orderdate;
 +---------------------+------------+-------------+--------------+---------------+------------------+--+
 |       c_name        | c_custkey  | o_orderkey  | o_orderdate  | o_totalprice  | sum(l_quantity)  |
 +---------------------+------------+-------------+--------------+---------------+------------------+--+
@@ -29908,17 +29903,17 @@ No rows selected (0.117 seconds)
 | Customer#000653965  | 653965     | 27458500    | 1995-09-25   | 364945.75     | 304.0            |
 | Customer#000750967  | 750967     | 17612003    | 1996-02-05   | 359071.37     | 302.0            |
 +---------------------+------------+-------------+--------------+---------------+------------------+--+
-624 rows selected (29.325 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select sum(l_extendedprice* (1 - l_discount)) as revenue from lineitem, part where ( p_partkey = l_ partkey and p_brand = 'Brand#12' and p_container in ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG') and l_quantity >= 1 and l_quantity  <= 1 + 10 and p_size between 1 and 5 and l_shipmode in ('AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PERSON' ) or ( p_partke y = l_partkey and p_brand = 'Brand#23' and p_container in ('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK') and l_quantity >= 10 and l _quantity <= 10 + 10 and p_size between 1 and 10 and l_shipmode in ('AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PERSON' ) o r ( p_partkey = l_partkey and p_brand = 'Brand#34' and p_container in ('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG') and l_quantity >=  20 and l_quantity <= 20 + 10 and p_size between 1 and 15 and l_shipmode in ('AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PE RSON' );
-+-----------------------+--+
-|        revenue        |
-+-----------------------+--+
-| 3.0104438091100004E7  |
-+-----------------------+--+
-1 row selected (2.416 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select s_name, s_address from supplier, nation where s_suppkey in ( select ps_suppkey from partsupp  where ps_partkey in ( select p_partkey from part where p_name like 'forest%' ) and ps_availqty > ( select 0.5 * sum(l_quantity) f rom lineitem where l_partkey = ps_partkey and l_suppkey = ps_suppkey and l_shipdate >= date('1994-01-01') and l_shipdate < date('1 995-01-01') ) ) and s_nationkey = n_nationkey and n_name = 'CANADA' order by s_name;
+624 rows selected (167.96 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select sum(l_extendedprice* (1 - l_discount)) as revenue from lineitem, part where ( p_partkey = l_partkey and  p_brand = 'Brand#12' and p_container in ('SM CASE', 'SM BOX', 'SM PACK', 'SM PKG') and l_quantity >= 1 and l_quantity <= 1 + 10 and p_size betw een 1 and 5 and l_shipmode in ('AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PERSON' ) or ( p_partkey = l_partkey and p_brand = 'Brand#23'  and p_container in ('MED BAG', 'MED BOX', 'MED PKG', 'MED PACK') and l_quantity >= 10 and l_quantity <= 10 + 10 and p_size between 1 and 10 an d l_shipmode in ('AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PERSON' ) or ( p_partkey = l_partkey and p_brand = 'Brand#34' and p_contain er in ('LG CASE', 'LG BOX', 'LG PACK', 'LG PKG') and l_quantity >= 20 and l_quantity <= 20 + 10 and p_size between 1 and 15 and l_shipmode in ( 'AIR', 'AIR REG') and l_shipinstruct = 'DELIVER IN PERSON' );
++------------------+--+
+|     revenue      |
++------------------+--+
+| 3.01044380911E7  |
++------------------+--+
+1 row selected (6.012 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select s_name, s_address from supplier, nation where s_suppkey in ( select ps_suppkey from partsupp where ps_pa rtkey in ( select p_partkey from part where p_name like 'forest%' ) and ps_availqty > ( select 0.5 * sum(l_quantity) from lineitem where l_part key = ps_partkey and l_suppkey = ps_suppkey and l_shipdate >= date('1994-01-01') and l_shipdate < date('1995-01-01') ) ) and s_nationkey = n_na tionkey and n_name = 'CANADA' order by s_name;
 +---------------------+-------------------------------------------+--+
 |       s_name        |                 s_address                 |
 +---------------------+-------------------------------------------+--+
@@ -31781,9 +31776,9 @@ No rows selected (0.117 seconds)
 | Supplier#000099980  | As8Iaeb75i1DfvXqnl0M6eQFeax4              |
 | Supplier#000099985  | 8NDclMS,EEJOa4kVqiNiilk3kPfvgOg3KY        |
 +---------------------+-------------------------------------------+--+
-1,804 rows selected (9.857 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select s_name, count(*) as numwait from supplier, lineitem l1, orders, nation where s_suppkey = l1. l_suppkey and o_orderkey = l1.l_orderkey and o_orderstatus = 'F' and l1.l_receiptdate > l1.l_commitdate and exists ( select * from  lineitem l2 where l2.l_orderkey = l1.l_orderkey and l2.l_suppkey <> l1.l_suppkey ) and not exists ( select * from lineitem l3 whe re l3.l_orderkey = l1.l_orderkey and l3.l_suppkey <> l1.l_suppkey and l3.l_receiptdate > l3.l_commitdate ) and s_nationkey = n_nat ionkey and n_name = 'SAUDI ARABIA' group by s_name order by numwait desc, s_name;
+1,804 rows selected (19.289 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select s_name, count(*) as numwait from supplier, lineitem l1, orders, nation where s_suppkey = l1.l_suppkey an d o_orderkey = l1.l_orderkey and o_orderstatus = 'F' and l1.l_receiptdate > l1.l_commitdate and exists ( select * from lineitem l2 where l2.l_o rderkey = l1.l_orderkey and l2.l_suppkey <> l1.l_suppkey ) and not exists ( select * from lineitem l3 where l3.l_orderkey = l1.l_orderkey and l 3.l_suppkey <> l1.l_suppkey and l3.l_receiptdate > l3.l_commitdate ) and s_nationkey = n_nationkey and n_name = 'SAUDI ARABIA' group by s_name  order by numwait desc, s_name;
 +---------------------+----------+--+
 |       s_name        | numwait  |
 +---------------------+----------+--+
@@ -35917,28 +35912,29 @@ No rows selected (0.117 seconds)
 | Supplier#000098641  | 2        |
 | Supplier#000086152  | 1        |
 +---------------------+----------+--+
-4,009 rows selected (84.742 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select cntrycode, count(*) as numcust, sum(c_acctbal) as totacctbal from ( select substring(c_phone ,1 ,2) as cntrycode, c_acctbal from customer where substring(c_phone ,1,2) in ('13','31','23','29','30','18','17') and c_acctbal >  ( select avg(c_acctbal) from customer where c_acctbal > 0.00 and substring(c_phone,1,2) in ('13', '31', '23', '29', '30', '18', ' 17') ) and not exists ( select * from orders where o_custkey = c_custkey ) ) as custsale group by cntrycode order by cntrycode;
+4,009 rows selected (135.363 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select cntrycode, count(*) as numcust, sum(c_acctbal) as totacctbal from ( select substring(c_phone,1 ,2) as cn trycode, c_acctbal from customer where substring(c_phone ,1,2) in ('13','31','23','29','30','18','17') and c_acctbal > ( select avg(c_acctbal)  from customer where c_acctbal > 0.00 and substring(c_phone,1,2) in ('13', '31', '23', '29', '30', '18', '17') ) and not exists ( select * from  orders where o_custkey = c_custkey ) ) as custsale group by cntrycode order by cntrycode;
 +------------+----------+----------------------+--+
 | cntrycode  | numcust  |      totacctbal      |
 +------------+----------+----------------------+--+
-| 13         | 9025     | 6.759246828000003E7  |
-| 17         | 9067     | 6.808466333999999E7  |
+| 13         | 9025     | 6.759246828E7        |
+| 17         | 9067     | 6.808466334E7        |
 | 18         | 9210     | 6.931278360999998E7  |
-| 23         | 8984     | 6.760777132000001E7  |
-| 29         | 9199     | 6.901543825999998E7  |
+| 23         | 8984     | 6.760777132E7        |
+| 29         | 9199     | 6.901543825999996E7  |
 | 30         | 9343     | 7.011883803999999E7  |
-| 31         | 9086     | 6.814452538000004E7  |
+| 31         | 9086     | 6.814452538000001E7  |
 +------------+----------+----------------------+--+
-7 rows selected (14.576 seconds)
-0: jdbc:hive2://carbon1:10000> 
-0: jdbc:hive2://carbon1:10000> select count(l_shipdate), count(l_shipinstruct), count(l_orderkey), count(l_suppkey), count(l_quant ity), count(l_partkey), count(l_receiptdate), count(l_commitdate), count(l_comment), count(l_discount), count(l_linenumber), count (L_RETURNFLAG), count(L_LINESTATUS), count(l_shipmode) from lineitem;
-+--------------------+------------------------+--------------------+-------------------+--------------------+-------------------+-----------------------+----------------------+-------------------+--------------------+----------------------+----------------------+----------------------+--------------------+--+
-| count(l_shipdate)  | count(l_shipinstruct)  | count(l_orderkey)  | count(l_suppkey)  | count(l_quantity)  | count(l_partkey)  | count(l_receiptdate)  | count(l_commitdate)  | count(l_comment)  | count(l_discount)  | count(l_linenumber)  | count(L_RETURNFLAG)  | count(L_LINESTATUS)  | count(l_shipmode)  |
-+--------------------+------------------------+--------------------+-------------------+--------------------+-------------------+-----------------------+----------------------+-------------------+--------------------+----------------------+----------------------+----------------------+--------------------+--+
-| 59986052           | 59986052               | 59986052           | 59986052          | 59986052           | 59986052          | 59986052              | 59986052             | 59986052          | 59986052           | 59986052             | 59986052             | 59986052             | 59986052           |
-+--------------------+------------------------+--------------------+-------------------+--------------------+-------------------+-----------------------+----------------------+-------------------+--------------------+----------------------+----------------------+----------------------+--------------------+--+
-1 row selected (5.281 seconds)
-0: jdbc:hive2://carbon1:10000> 
-Closing: 0: jdbc:hive2://carbon1:10000
+7 rows selected (19.147 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select count(L_ORDERKEY) , count(L_PARTKEY) , count(L_SUPPKEY), count(L_LINENUMBER), count(L_QUANTITY), count(L _EXTENDEDPRICE), count(L_DISCOUNT), count(L_TAX), count(L_RETURNFLAG), count(L_LINESTATUS), count(L_SHIPDATE), count(L_COMMITDATE), count(L_REC EIPTDATE), count(L_SHIPINSTRUCT), count(L_SHIPMODE), count(L_COMMENT) from lineitem;
++--------------------+-------------------+-------------------+----------------------+--------------------+-------------------------+--------------------+---------------+----------------------+----------------------+--------------------+----------------------+-----------------------+------------------------+--------------------+-------------------+--+
+| count(L_ORDERKEY)  | count(L_PARTKEY)  | count(L_SUPPKEY)  | count(L_LINENUMBER)  | count(L_QUANTITY)  | count(L_EXTENDEDPRICE)  | count(L_DISCOUNT)  | count(L_TAX)  | count(L_RETURNFLAG)  | count(L_LINESTATUS)  | count(L_SHIPDATE)  | count(L_COMMITDATE)  | count(L_RECEIPTDATE)  | count(L_SHIPINSTRUCT)  | count(L_SHIPMODE)  | count(L_COMMENT)  |
++--------------------+-------------------+-------------------+----------------------+--------------------+-------------------------+--------------------+---------------+----------------------+----------------------+--------------------+----------------------+-----------------------+------------------------+--------------------+-------------------+--+
+| 59986052           | 59986052          | 59986052          | 59986052             | 59986052           | 59986052                | 59986052           | 59986052      | 59986052             | 59986052             | 59986052           | 59986052             | 59986052              | 59986052               | 59986052           | 59986052          |
++--------------------+-------------------+-------------------+----------------------+--------------------+-------------------------+--------------------+---------------+----------------------+----------------------+--------------------+----------------------+-----------------------+------------------------+--------------------+-------------------+--+
+1 row selected (7.256 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> 
+Closing: 0: jdbc:hive2://carbon15:10000
