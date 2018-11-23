@@ -1,0 +1,140 @@
+Connecting to jdbc:hive2://carbon15:10000
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.5.1-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/apache-carbondata-1.6.0-SNAPSHOT-bin-spark2.3.2-hadoop2.7.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/jacky/code/spark-2.3.2-bin-hadoop2.7/jars/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+18/10/29 16:01:57 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
+18/10/29 16:01:57 INFO Utils (Utils:397): Resolved authority: carbon15:10000
+18/10/29 16:01:57 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connected to: Spark SQL (version 2.3.2)
+Driver: Hive JDBC (version 1.2.1.spark2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://carbon15:10000> drop database if exists tpchhive cascade;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.148 seconds)
+0: jdbc:hive2://carbon15:10000> create database tpchhive;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.071 seconds)
+0: jdbc:hive2://carbon15:10000> use tpchhive;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.027 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> create table if not exists SUPPLIER(S_SUPPKEY string, S_NAME string, S_ADDRESS string, S_NATIONKEY  string, S_PHONE string, S_ACCTBAL double, S_COMMENT string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCA TION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/supplier';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.05 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists PARTSUPP(PS_PARTKEY int , PS_SUPPKEY string, PS_AVAILQTY int, PS_SUPPLY COST double, PS_COMMENT string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch- osx/dbgen/tpch_data/partsupp';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.066 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists CUSTOMER(C_CUSTKEY string, C_NAME string, C_ADDRESS string, C_NATIONKEY  string, C_PHONE string, C_ACCTBAL double, C_MKTSEGMENT string, C_COMMENT string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' ST ORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/customer';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.049 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists NATION(N_NATIONKEY string, N_NAME string, N_REGIONKEY string, N_COMMENT  string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/nat ion';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.047 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists REGION(R_REGIONKEY string, R_NAME string, R_COMMENT string) ROW FORMAT  DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/region';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.05 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists PART(P_PARTKEY INT, P_NAME string, P_MFGR string, P_BRAND string, P_TYP E string, P_SIZE int, P_CONTAINER string, P_RETAILPRICE double, P_COMMENT string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' ST ORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/part';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.062 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists LINEITEM(L_ORDERKEY INT , L_PARTKEY INT , L_SUPPKEY string, L_LINENUMBE R int, L_QUANTITY double, L_EXTENDEDPRICE double, L_DISCOUNT double, L_TAX double, L_RETURNFLAG string, L_LINESTATUS string, L_SHI PDATE date, L_COMMITDATE date, L_RECEIPTDATE date, L_SHIPINSTRUCT string, L_SHIPMODE string, L_COMMENT string) ROW FORMAT DELIMITE D FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/lineitem';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.059 seconds)
+0: jdbc:hive2://carbon15:10000> create table if not exists ORDERS(O_ORDERKEY int, O_CUSTKEY string, O_ORDERSTATUS string, O_TOTALP RICE double, O_ORDERDATE date, O_ORDERPRIORITY string, O_CLERK string, O_SHIPPRIORITY int, O_COMMENT string) ROW FORMAT DELIMITED  FIELDS TERMINATED BY '|' STORED AS TEXTFILE LOCATION '/Users/jacky/code/tpch-osx/dbgen/tpch_data/orders';
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.048 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select count(*) from LINEITEM;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 59986052  |
++-----------+--+
+1 row selected (10.649 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from SUPPLIER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 100000    |
++-----------+--+
+1 row selected (0.269 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PARTSUPP;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 8000000   |
++-----------+--+
+1 row selected (1.501 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from CUSTOMER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 1500000   |
++-----------+--+
+1 row selected (0.668 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from NATION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 25        |
++-----------+--+
+1 row selected (0.138 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from REGION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 5         |
++-----------+--+
+1 row selected (0.218 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from PART;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 2000000   |
++-----------+--+
+1 row selected (0.42 seconds)
+0: jdbc:hive2://carbon15:10000> select count(*) from ORDERS;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 15000000  |
++-----------+--+
+1 row selected (2.22 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> 
+Closing: 0: jdbc:hive2://carbon15:10000

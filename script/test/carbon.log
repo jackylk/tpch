@@ -1,0 +1,15 @@
+Connecting to jdbc:hive2://carbon15:10000
+18/11/23 17:19:04 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
+18/11/23 17:19:04 INFO Utils (Utils:397): Resolved authority: carbon15:10000
+18/11/23 17:19:04 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connected to: Spark SQL (version 2.2.1)
+Driver: Hive JDBC (version 1.2.1.spark2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://carbon15:10000> use tpchcarbon_base;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.54 seconds)
+0: jdbc:hive2://carbon15:10000> 
+0: jdbc:hive2://carbon15:10000> select count(*) from LINEITEM;

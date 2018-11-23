@@ -1,4 +1,4 @@
-use tpchparquet_partition;
+use tpchparquet;
 
 select count(*) from LINEITEM;
 select count(*) from SUPPLIER;
@@ -56,4 +56,6 @@ select s_name, s_address from supplier, nation where s_suppkey in ( select ps_su
 select s_name, count(*) as numwait from supplier, lineitem l1, orders, nation where s_suppkey = l1.l_suppkey and o_orderkey = l1.l_orderkey and o_orderstatus = 'F' and l1.l_receiptdate > l1.l_commitdate and exists ( select * from lineitem l2 where l2.l_orderkey = l1.l_orderkey and l2.l_suppkey <> l1.l_suppkey ) and not exists ( select * from lineitem l3 where l3.l_orderkey = l1.l_orderkey and l3.l_suppkey <> l1.l_suppkey and l3.l_receiptdate > l3.l_commitdate ) and s_nationkey = n_nationkey and n_name = 'SAUDI ARABIA' group by s_name order by numwait desc, s_name;
 
 select cntrycode, count(*) as numcust, sum(c_acctbal) as totacctbal from ( select substring(c_phone,1 ,2) as cntrycode, c_acctbal from customer where substring(c_phone ,1,2) in ('13','31','23','29','30','18','17') and c_acctbal > ( select avg(c_acctbal) from customer where c_acctbal > 0.00 and substring(c_phone,1,2) in ('13', '31', '23', '29', '30', '18', '17') ) and not exists ( select * from orders where o_custkey = c_custkey ) ) as custsale group by cntrycode order by cntrycode;
+
+select count(L_ORDERKEY) , count(L_PARTKEY) , count(L_SUPPKEY), count(L_LINENUMBER), count(L_QUANTITY), count(L_EXTENDEDPRICE), count(L_DISCOUNT), count(L_TAX), count(L_RETURNFLAG), count(L_LINESTATUS), count(L_SHIPDATE), count(L_COMMITDATE), count(L_RECEIPTDATE), count(L_SHIPINSTRUCT), count(L_SHIPMODE), count(L_COMMENT) from lineitem;
 
