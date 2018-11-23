@@ -1,4 +1,4 @@
-use tpchcarbon_base;
+use tpchcarbon;
 
 select count(*) from LINEITEM;
 select count(*) from SUPPLIER;

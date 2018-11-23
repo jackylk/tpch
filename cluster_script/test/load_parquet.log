@@ -1,64 +1,64 @@
-Connecting to jdbc:hive2://carbon15:10000
-18/11/18 18:08:33 INFO Utils (Utils:310): Supplied authorities: carbon15:10000
-18/11/18 18:08:33 INFO Utils (Utils:397): Resolved authority: carbon15:10000
-18/11/18 18:08:33 INFO HiveConnection (HiveConnection:203): Will try to open client transport with JDBC Uri: jdbc:hive2://carbon15:10000
+Connecting to jdbc:hive2://carbon1:10000
+18/11/24 00:32:58 INFO jdbc.Utils: Supplied authorities: carbon1:10000
+18/11/24 00:32:58 INFO jdbc.Utils: Resolved authority: carbon1:10000
+18/11/24 00:32:58 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://carbon1:10000
 Connected to: Spark SQL (version 2.2.1)
 Driver: Hive JDBC (version 1.2.1.spark2)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
-0: jdbc:hive2://carbon15:10000> use tpchparquet;
+0: jdbc:hive2://carbon1:10000> use tpchparquet;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.099 seconds)
-0: jdbc:hive2://carbon15:10000> 
-0: jdbc:hive2://carbon15:10000> insert into table nation select * from tpchhive.nation;
+No rows selected (0.069 seconds)
+0: jdbc:hive2://carbon1:10000> 
+0: jdbc:hive2://carbon1:10000> insert into table nation select * from tpchhive.nation;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.309 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table supplier select * from tpchhive.supplier;
+No rows selected (1.465 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table supplier select * from tpchhive.supplier;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.912 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table ORDERS select * from tpchhive.ORDERS;
+No rows selected (0.891 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table ORDERS select * from tpchhive.ORDERS;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (23.956 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table lineitem select * from tpchhive.lineitem;
+No rows selected (15.999 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table lineitem select * from tpchhive.lineitem;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (122.466 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table PARTSUPP select * from tpchhive.partsupp;
+No rows selected (58.937 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table PARTSUPP select * from tpchhive.partsupp;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (7.736 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table REGION select * from tpchhive.region;
+No rows selected (5.325 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table REGION select * from tpchhive.region;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (0.224 seconds)
-0: jdbc:hive2://carbon15:10000> insert into TABLE PART select * from tpchhive.part;
+No rows selected (0.171 seconds)
+0: jdbc:hive2://carbon1:10000> insert into TABLE PART select * from tpchhive.part;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (3.605 seconds)
-0: jdbc:hive2://carbon15:10000> insert into table CUSTOMER select * from tpchhive.customer;
+No rows selected (6.84 seconds)
+0: jdbc:hive2://carbon1:10000> insert into table CUSTOMER select * from tpchhive.customer;
 +---------+--+
 | Result  |
 +---------+--+
 +---------+--+
-No rows selected (3.065 seconds)
-0: jdbc:hive2://carbon15:10000> 
-Closing: 0: jdbc:hive2://carbon15:10000
+No rows selected (6.535 seconds)
+0: jdbc:hive2://carbon1:10000> 
+Closing: 0: jdbc:hive2://carbon1:10000
