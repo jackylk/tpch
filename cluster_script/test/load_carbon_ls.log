@@ -1,0 +1,130 @@
+Connecting to jdbc:hive2://carbon1:10000
+18/11/24 00:30:37 INFO jdbc.Utils: Supplied authorities: carbon1:10000
+18/11/24 00:30:37 INFO jdbc.Utils: Resolved authority: carbon1:10000
+18/11/24 00:30:37 INFO jdbc.HiveConnection: Will try to open client transport with JDBC Uri: jdbc:hive2://carbon1:10000
+Connected to: Spark SQL (version 2.2.1)
+Driver: Hive JDBC (version 1.2.1.spark2)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://carbon1:10000> use tpchcarbon_ls;
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.073 seconds)
+0: jdbc:hive2://carbon1:10000> 
+0: jdbc:hive2://carbon1:10000> set carbon.number.of.cores.while.loading=3;
++---------------------------------------+--------+--+
+|                  key                  | value  |
++---------------------------------------+--------+--+
+| carbon.number.of.cores.while.loading  | 3      |
++---------------------------------------+--------+--+
+1 row selected (0.015 seconds)
+0: jdbc:hive2://carbon1:10000> 
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/part" into table PART options ('header'='false','de limiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (3.768 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/supplier" into table SUPPLIER options ('header'='fa lse','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.87 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/orders" into table ORDERS options ('header'='false' ,'delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (17.922 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/nation" into table NATION options ('header'='false' ,'delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.536 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/region" into table REGION options ('header'='false' ,'delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (0.598 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/customer" into table CUSTOMER options ('header'='fa lse','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (2.761 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/partsupp" into table PARTSUPP options ('header'='fa lse','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (6.255 seconds)
+0: jdbc:hive2://carbon1:10000> load data inpath "hdfs://carbon1:9000/tpch-data/lineitem" into table LINEITEM options ('header'='fa lse','delimiter'='|');
++---------+--+
+| Result  |
++---------+--+
++---------+--+
+No rows selected (104.333 seconds)
+0: jdbc:hive2://carbon1:10000> 
+0: jdbc:hive2://carbon1:10000> 
+0: jdbc:hive2://carbon1:10000> select count(*) from LINEITEM;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 59986052  |
++-----------+--+
+1 row selected (0.154 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from SUPPLIER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 100000    |
++-----------+--+
+1 row selected (0.124 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from PARTSUPP;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 8000000   |
++-----------+--+
+1 row selected (0.118 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from CUSTOMER;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 1500000   |
++-----------+--+
+1 row selected (0.122 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from NATION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 25        |
++-----------+--+
+1 row selected (0.109 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from REGION;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 5         |
++-----------+--+
+1 row selected (0.106 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from PART;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 2000000   |
++-----------+--+
+1 row selected (0.093 seconds)
+0: jdbc:hive2://carbon1:10000> select count(*) from ORDERS;
++-----------+--+
+| count(1)  |
++-----------+--+
+| 15000000  |
++-----------+--+
+1 row selected (0.105 seconds)
+0: jdbc:hive2://carbon1:10000> 
+Closing: 0: jdbc:hive2://carbon1:10000
